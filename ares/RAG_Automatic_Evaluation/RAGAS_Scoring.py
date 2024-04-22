@@ -1,14 +1,11 @@
 
 from ragas import evaluate
 from datasets import Dataset
-import os
 import pandas as pd
 import scipy.stats as stats
 
 from ragas.metrics import (
     answer_relevancy,
-    faithfulness,
-    context_recall,
     context_precision,
 )
 

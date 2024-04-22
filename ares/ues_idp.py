@@ -1,8 +1,5 @@
 import pandas as pd
-import torch
-import openai
 import sys
-from transformers import AutoTokenizer, AutoModelForCausalLM
 from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_faithfulness_scoring 
 from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_relevance_scoring
 from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_context_relevance_scoring
@@ -12,9 +9,6 @@ from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_r
 from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_context_relevance_scoring_claude 
 from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_faithfulness_scoring_claude
 from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_relevance_scoring_claude
-from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_context_relevance_scoring_vllm
-from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_faithfulness_scoring_vllm
-from ares.RAG_Automatic_Evaluation.Evaluation_Functions import few_shot_answer_relevance_scoring_vllm
 if 'ipykernel' in sys.modules:
     # We are in a Jupyter notebook or similar (uses IPython kernel)
     from tqdm.notebook import tqdm
@@ -34,13 +28,13 @@ def ues_idp_config(in_domain_prompts_dataset: str, unlabeled_evaluation_set: str
     else:
         unlabeled_evaluation_set = None
     if in_domain_prompts_dataset is None and unlabeled_evaluation_set is None: 
-        print(f"Error: UES and IDP are not provided")
+        print("Error: UES and IDP are not provided")
         exit()
     if in_domain_prompts_dataset is None: 
-        print(f"Error: IDP is not provided")
+        print("Error: IDP is not provided")
         exit()
     if unlabeled_evaluation_set is None: 
-        print(f"Error: UES is not provided")
+        print("Error: UES is not provided")
         exit()
 
     if documents > len(unlabeled_evaluation_set): 

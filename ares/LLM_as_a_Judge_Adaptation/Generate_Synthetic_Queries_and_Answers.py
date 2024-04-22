@@ -1,26 +1,16 @@
-import requests
-import time
 import pandas as pd
-import ast
 import json
-import copy
-import openai
 from tqdm import tqdm
-import csv
-from datasets import Dataset
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, AutoConfig, AutoModelForCausalLM, BitsAndBytesConfig
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
-import numpy as np
-from sklearn.model_selection import train_test_split
 import re
 import argparse
-import pdb
 import sys
 
-from ares.LLM_as_a_Judge_Adaptation.LLM_Generation_Functions import generate_synthetic_query_openai_approach, generate_answer_from_context, generate_contradictory_answer_from_context
+from ares.LLM_as_a_Judge_Adaptation.LLM_Generation_Functions import generate_synthetic_query_openai_approach, generate_answer_from_context
 from ares.LLM_as_a_Judge_Adaptation.LLM_Generation_Functions import check_generated_answer, generate_contradictory_answer_examples, generate_synthetic_query_llm_approach, generate_answer_llm_approach
 
-from ares.LLM_as_a_Judge_Adaptation.Filter_Synthetic_Queries import get_embedding, generate_index, filter_synthetic_queries, generate_additional_negatives, generate_additional_positives
+from ares.LLM_as_a_Judge_Adaptation.Filter_Synthetic_Queries import generate_index, filter_synthetic_queries, generate_additional_negatives, generate_additional_positives
 #from Instruction_Finetune import instruction_finetune
 #from Instruction_Finetune_V2 import instruction_finetune_v2
 #from Instruction_Finetune_v3 import instruction_finetune_v3
@@ -97,7 +87,7 @@ def load_documents(document_filepath, clean_documents, documents_sampled):
     count = initial_count - after_filter_count
 
     if(after_filter_count == 0): 
-        sys.exit(f"All documents were less than 50 words, please provide dataset with documents containing more than 50 words")
+        sys.exit("All documents were less than 50 words, please provide dataset with documents containing more than 50 words")
 
     if documents_sampled > documents.shape[0]:
         sys.exit(f"({documents_sampled}) cannot be higher than the number of documents in `--document_filepath` after filtering ({documents.shape[0]})") 

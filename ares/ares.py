@@ -4,8 +4,6 @@ from .rag_scoring import rag_scoring_config
 from .ues_idp import ues_idp_config
 from .kilt_filter import KILT_dataset_process
 from .superglue_filter import superGlue
-from typing import List
-import pandas as pd
 
 context_relevance_system_prompt = "You are an expert dialogue agent."
 context_relevance_system_prompt += "Your task is to analyze the provided document and determine whether it is relevant for responding to the dialogue. "
@@ -171,7 +169,7 @@ class ARES:
         # else:
         #     unlabeled_evaluation_set = None
         if self.ues_idp_config == {}: 
-            print(f"Skipping UES and IDP since either unlabeled evaluation set or in domain prompts not provided")
+            print("Skipping UES and IDP since either unlabeled evaluation set or in domain prompts not provided")
             exit()
         else: 
             model_choice = self.ues_idp_config["model_choice"]

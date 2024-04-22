@@ -1,12 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import itertools
 from scipy.stats import binom, norm
 from scipy.special import expit
 from scipy.optimize import brentq
 from sklearn.linear_model import LogisticRegression
 from joblib import delayed, Parallel
-import pdb
 
 """
     IID Concentration Bounds

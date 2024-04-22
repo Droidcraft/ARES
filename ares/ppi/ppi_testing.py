@@ -1,13 +1,9 @@
 
-import os, time
-import sys
 #sys.path.insert(1, '../')
-from ppi import clt_iid, binomial_iid, pp_mean_iid_asymptotic
+from ppi import binomial_iid, pp_mean_iid_asymptotic
 import numpy as np
 from tqdm import tqdm
 import pandas as pd
-import pdb
-from sklearn.model_selection import train_test_split
 
 ######################################################################
 
